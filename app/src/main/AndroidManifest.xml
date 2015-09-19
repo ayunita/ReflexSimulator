@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/CustomActionBarTheme" >
         <activity
             android:name=".Main"
             android:label="@string/app_name" >
@@ -17,8 +17,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SinglePlayer"
+            android:name=".ReactionTimer"
             android:label="@string/title_activity_single_player"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.yunita.reflexsimulator.Main" />
+        </activity>
+        <activity
+            android:name=".Gameshow"
+            android:label="@string/title_activity_gameshow"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.yunita.reflexsimulator.Main" />
+        </activity>
+        <activity
+            android:name=".Statistic"
+            android:label="@string/title_activity_statistic"
             android:parentActivityName=".Main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
