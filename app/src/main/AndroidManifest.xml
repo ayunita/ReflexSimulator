@@ -40,6 +40,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.yunita.reflexsimulator.Main" />
         </activity>
+        <activity
+            android:name=".InstructionDialog"
+            android:label="@string/title_activity_instruction_dialog"
+            android:parentActivityName=".ReactionTimer" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.yunita.reflexsimulator.ReactionTimer" />
+        </activity>
     </application>
 
 </manifest>

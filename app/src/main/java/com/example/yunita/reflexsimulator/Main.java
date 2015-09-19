@@ -19,6 +19,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setMainLayout();
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
     @Override
@@ -50,6 +51,7 @@ public class Main extends AppCompatActivity {
     public void gotoSingleMode(View view){
         Intent intent = new Intent(this, ReactionTimer.class);
         startActivity(intent);
+
     }
 
     public void gotoPartyMode(View view){

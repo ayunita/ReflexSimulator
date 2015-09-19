@@ -6,4 +6,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_statistic">Statistic</string>
+    <string name="title_activity_instruction_dialog">InstructionDialog</string>
+
+    <string name="instruction">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
 </resources>
