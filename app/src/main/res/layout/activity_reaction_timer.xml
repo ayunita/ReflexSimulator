@@ -4,6 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/icon_margin"
+        android:text="@string/start_instruction"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp"
+        android:id="@+id/start_signal"/>
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reflex_button"
+        android:src="@drawable/custom_button"
+        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showResult" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/icon_margin"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/reflex_result"
+        android:text=""
+        android:onClick="removeResult"/>
 
 </LinearLayout>
