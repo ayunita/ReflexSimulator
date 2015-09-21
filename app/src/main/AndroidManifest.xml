@@ -43,11 +43,12 @@
         <activity
             android:name=".InstructionDialog"
             android:label="@string/title_activity_instruction_dialog"
-            android:parentActivityName=".ReactionTimer"
-        android:theme="@android:style/Theme.Holo.Dialog" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.yunita.reflexsimulator.ReactionTimer" />
+            android:parentActivityName=".ReactionTimer" >
+        </activity>
+        <activity
+            android:name=".Instruction"
+            android:label="@string/title_activity_instruction"
+            android:theme="@android:style/Theme.Dialog">
         </activity>
     </application>
 

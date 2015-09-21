@@ -1,4 +1,5 @@
-<resources>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- the theme applied to the application or activity -->
     <style name="CustomActionBarTheme"
@@ -16,6 +17,11 @@
 
         <!-- Support library compatibility -->
         <item name="background">@color/primary_color</item>
+    </style>
+
+    <!-- Instruction dialog custom theme -->
+    <style name="InstructionTheme" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@drawable/button</item>
     </style>
 
 </resources>

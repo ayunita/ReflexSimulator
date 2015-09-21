@@ -11,4 +11,5 @@
     <string name="instruction">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
     <string name="start_instruction">START!</string>
     <string name="title_activity_test">Test</string>
+    <string name="title_activity_instruction">Instruction</string>
 </resources>

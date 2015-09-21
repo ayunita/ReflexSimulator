@@ -1,12 +1,14 @@
 package com.example.yunita.reflexsimulator;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,6 +26,9 @@ public class ReactionTimer extends AppCompatActivity {
     private int wait_time;
     private boolean isDone;
 
+    static boolean isDismiss = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +42,11 @@ public class ReactionTimer extends AppCompatActivity {
         reflex_result = (TextView) findViewById(R.id.reflex_result);
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
 
-        newFragment = new InstructionDialog();
-        newFragment.show(getFragmentManager(), "instruction");
+//        newFragment = new InstructionDialog();
+//        newFragment.show(getFragmentManager(), "instruction");
+
+        Intent instruction_intent = new Intent(this, Instruction.class);
+        startActivity(instruction_intent);
 
     }
 
@@ -68,18 +76,26 @@ public class ReactionTimer extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         Log.w("STATE 2", "ONRESUME");
+        if(isDismiss){
+            Log.w("DIALOG STATE: ", "TRUE");
+            start();
+        } else {
+            Log.w("DIALOG STATE: ", "FALSE");
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.w("STATE 3", "ONPAUSE");
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
         Log.w("STATE 4", "ONSTOP");
+        isDismiss = false;
     }
 
     @Override
