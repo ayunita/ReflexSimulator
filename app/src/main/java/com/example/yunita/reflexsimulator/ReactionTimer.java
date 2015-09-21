@@ -1,13 +1,10 @@
 package com.example.yunita.reflexsimulator;
 
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -37,11 +34,12 @@ public class ReactionTimer extends AppCompatActivity {
         start_signal = (TextView) findViewById(R.id.start_signal);
         start_signal.setVisibility(View.INVISIBLE);
 
-        reflex_result = (TextView)findViewById(R.id.reflex_result);
+        reflex_result = (TextView) findViewById(R.id.reflex_result);
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
 
         newFragment = new InstructionDialog();
         newFragment.show(getFragmentManager(), "instruction");
+
     }
 
     @Override
@@ -60,24 +58,38 @@ public class ReactionTimer extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
-        Log.w("STATE", "ONSTART");
-        if(newFragment.isRemoving()){
-            this.start();
-        } else {
-            Log.w("DIALOG", "ONRESUME");
-        }
+    public void onStart() {
+        super.onStart();
+        Log.w("STATE 1", "ONSTART");
+
     }
 
     @Override
-    public void onBackPressed(){
+    public void onResume() {
+        super.onResume();
+        Log.w("STATE 2", "ONRESUME");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.w("STATE 3", "ONPAUSE");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.w("STATE 4", "ONSTOP");
+    }
+
+    @Override
+    public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
-    public void start(){
-        timer = new CountDownTimer(randomWaitTime(),1) {
+    public void start() {
+        timer = new CountDownTimer(randomWaitTime(), 1) {
             @Override
             public void onTick(long l) {
                 isDone = false;
@@ -91,15 +103,15 @@ public class ReactionTimer extends AppCompatActivity {
         }.start();
     }
 
-    public int randomWaitTime(){
+    public int randomWaitTime() {
         Random random = new Random();
         wait_time = random.nextInt(1991) + 10;
         return wait_time;
     }
 
 
-    public void showResult(View view){
-        if(isDone == true) {
+    public void showResult(View view) {
+        if (isDone == true) {
             start_signal.setVisibility(View.INVISIBLE);
             reflex_result.setText(printOutResult(wait_time, 5000));
             reflex_button.setSelected(true);
@@ -111,12 +123,12 @@ public class ReactionTimer extends AppCompatActivity {
         // write result
     }
 
-    public void removeResult(View view){
+    public void removeResult(View view) {
         reflex_result.setText("");
         //start again the game
     }
 
-    public String printOutResult(int wait_time, int reflex_time){
+    public String printOutResult(int wait_time, int reflex_time) {
         String result = "Waiting time: " + wait_time + " ms\n";
         result += "Reflex time: " + reflex_time + " ms\n";
         return result;
