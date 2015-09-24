@@ -1,9 +1,7 @@
 package com.example.yunita.reflexsimulator;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 
 public class Gameshow extends AppCompatActivity {
@@ -32,8 +30,8 @@ public class Gameshow extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.pull_in_right,R.anim.push_out_left);
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setMainLayout(){
+    public void setMainLayout() {
         Typeface icon_font = Typeface.createFromAsset(getAssets(), ICON);
         TextView icon1 = (TextView) findViewById(R.id.reaction_timer_icon);
         TextView icon2 = (TextView) findViewById(R.id.gameshow_icon);
@@ -48,18 +47,18 @@ public class Main extends AppCompatActivity {
         icon3.setTypeface(icon_font);
     }
 
-    public void gotoSingleMode(View view){
+    public void gotoSingleMode(View view) {
         Intent intent = new Intent(this, ReactionTimer.class);
         startActivity(intent);
 
     }
 
-    public void gotoPartyMode(View view){
+    public void gotoPartyMode(View view) {
         Intent intent = new Intent(this, Gameshow.class);
         startActivity(intent);
     }
 
-    public void gotoStatistic(View view){
+    public void gotoStatistic(View view) {
         Intent intent = new Intent(this, Statistic.class);
         startActivity(intent);
     }

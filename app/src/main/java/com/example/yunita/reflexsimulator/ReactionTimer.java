@@ -7,8 +7,8 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,7 +24,7 @@ public class ReactionTimer extends AppCompatActivity {
 
     private CountDownTimer timer;
     private int wait_time;
-    private boolean isDone;
+    private boolean isTickDone;
 
     static boolean isDismiss = false;
 
@@ -37,16 +37,21 @@ public class ReactionTimer extends AppCompatActivity {
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
         start_signal = (TextView) findViewById(R.id.start_signal);
-        start_signal.setVisibility(View.INVISIBLE);
-
         reflex_result = (TextView) findViewById(R.id.reflex_result);
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
 
-//        newFragment = new InstructionDialog();
-//        newFragment.show(getFragmentManager(), "instruction");
-
         Intent instruction_intent = new Intent(this, Instruction.class);
         startActivity(instruction_intent);
+
+        reflex_button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) { //modify the motion event!
+                    showResult();
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -76,12 +81,13 @@ public class ReactionTimer extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         Log.w("STATE 2", "ONRESUME");
-        if(isDismiss){
+        if (isDismiss) {
             Log.w("DIALOG STATE: ", "TRUE");
             start();
         } else {
             Log.w("DIALOG STATE: ", "FALSE");
         }
+
     }
 
     @Override
@@ -105,16 +111,19 @@ public class ReactionTimer extends AppCompatActivity {
     }
 
     public void start() {
+        /*taken from http://developer.android.com/reference/android/os/CountDownTimer.html
+          modified by yunita
+        */
         timer = new CountDownTimer(randomWaitTime(), 1) {
             @Override
             public void onTick(long l) {
-                isDone = false;
+                isTickDone = false;
             }
 
             @Override
             public void onFinish() {
-                start_signal.setVisibility(View.VISIBLE);
-                isDone = true;
+                isTickDone = true;
+                start_signal.setText("START!");
             }
         }.start();
     }
@@ -125,18 +134,19 @@ public class ReactionTimer extends AppCompatActivity {
         return wait_time;
     }
 
-
-    public void showResult(View view) {
-        if (isDone == true) {
-            start_signal.setVisibility(View.INVISIBLE);
-            reflex_result.setText(printOutResult(wait_time, 5000));
+    public void showResult() {
+        if (isTickDone == true) {
+            start_signal.setText("");
+            // show the result and the button has been clicked
             reflex_button.setSelected(true);
+            reflex_result.setText(printOutResult(wait_time, 5000));
+            // write result
+            // NEED IMPLEMENTATION
         } else {
-            reflex_result.setText("Too fast!");
-            // restart timer
+            start_signal.setText("Too fast!"); // >> NEED TO BE FIXED!
             start();
         }
-        // write result
+
     }
 
     public void removeResult(View view) {
