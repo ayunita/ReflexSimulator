@@ -1,14 +1,13 @@
 package com.example.yunita.reflexsimulator;
 
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,18 +15,19 @@ import java.util.Random;
 
 public class ReactionTimer extends AppCompatActivity {
 
-    private DialogFragment newFragment;
-
     private TextView start_signal;
     private TextView reflex_result;
     private ImageButton reflex_button;
+    private Button restart_button;
+
+    static boolean isDismiss = false;
 
     private CountDownTimer timer;
     private int wait_time;
     private boolean isTickDone;
 
-    static boolean isDismiss = false;
-
+    private int startTime;
+    private int endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class ReactionTimer extends AppCompatActivity {
         start_signal = (TextView) findViewById(R.id.start_signal);
         reflex_result = (TextView) findViewById(R.id.reflex_result);
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
+        restart_button = (Button)findViewById(R.id.restart_button);
 
         Intent instruction_intent = new Intent(this, Instruction.class);
         startActivity(instruction_intent);
@@ -46,7 +47,7 @@ public class ReactionTimer extends AppCompatActivity {
         reflex_button.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) { //modify the motion event!
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     showResult();
                 }
                 return false;
@@ -58,7 +59,7 @@ public class ReactionTimer extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up custom_button, so long
+        // automatically handle clicks on the Home/Up custom_reflex_button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -71,36 +72,16 @@ public class ReactionTimer extends AppCompatActivity {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Log.w("STATE 1", "ONSTART");
-
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
-        Log.w("STATE 2", "ONRESUME");
         if (isDismiss) {
-            Log.w("DIALOG STATE: ", "TRUE");
             start();
-        } else {
-            Log.w("DIALOG STATE: ", "FALSE");
         }
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.w("STATE 3", "ONPAUSE");
-
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.w("STATE 4", "ONSTOP");
         isDismiss = false;
     }
 
@@ -111,6 +92,8 @@ public class ReactionTimer extends AppCompatActivity {
     }
 
     public void start() {
+        restart_button.setVisibility(View.INVISIBLE);
+        reflex_button.setEnabled(true);
         /*taken from http://developer.android.com/reference/android/os/CountDownTimer.html
           modified by yunita
         */
@@ -118,46 +101,65 @@ public class ReactionTimer extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 isTickDone = false;
+                if(reflex_button.isPressed()){
+                    start_signal.setText("Too fast!");
+                    start();
+                }
             }
 
             @Override
             public void onFinish() {
                 isTickDone = true;
                 start_signal.setText("START!");
+                startTime = (int) System.currentTimeMillis();
             }
         }.start();
     }
 
     public int randomWaitTime() {
         Random random = new Random();
-        wait_time = random.nextInt(1991) + 10;
+        wait_time = random.nextInt(1991) + 10; // random waiting time in range 10-2000ms
         return wait_time;
+    }
+
+    public int getReflexTime(){
+        return endTime - startTime;
     }
 
     public void showResult() {
         if (isTickDone == true) {
-            start_signal.setText("");
+            reflex_button.setEnabled(false);
+            endTime = (int) System.currentTimeMillis();
+            start_signal.setText("Good job!");
             // show the result and the button has been clicked
             reflex_button.setSelected(true);
-            reflex_result.setText(printOutResult(wait_time, 5000));
+            reflex_result.setText(printOutResult(wait_time, getReflexTime()));
             // write result
             // NEED IMPLEMENTATION
-        } else {
-            start_signal.setText("Too fast!"); // >> NEED TO BE FIXED!
-            start();
+
+            restartGame();
         }
 
-    }
-
-    public void removeResult(View view) {
-        reflex_result.setText("");
-        //start again the game
     }
 
     public String printOutResult(int wait_time, int reflex_time) {
         String result = "Waiting time: " + wait_time + " ms\n";
         result += "Reflex time: " + reflex_time + " ms\n";
         return result;
+    }
+
+    public void restartGame(){
+        restart_button.setVisibility(View.VISIBLE);
+        restart_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reflex_button.setSelected(false);
+                reflex_result.setText("");
+                start_signal.setText("");
+                reflex_button.setActivated(false);
+                start();
+            }
+        });
     }
 
 }
