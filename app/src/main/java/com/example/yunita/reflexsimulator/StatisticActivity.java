@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-public class Gameshow extends AppCompatActivity {
+public class StatisticActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gameshow);
+        setContentView(R.layout.activity_statistic);
 
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }

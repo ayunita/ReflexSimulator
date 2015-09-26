@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class Main extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private final static String ICON = "heydings_icons.ttf";
 
@@ -48,18 +48,18 @@ public class Main extends AppCompatActivity {
     }
 
     public void gotoSingleMode(View view) {
-        Intent intent = new Intent(this, ReactionTimer.class);
+        Intent intent = new Intent(this, ReactionTimerActivity.class);
         startActivity(intent);
 
     }
 
     public void gotoPartyMode(View view) {
-        Intent intent = new Intent(this, Gameshow.class);
+        Intent intent = new Intent(this, GameshowActivity.class);
         startActivity(intent);
     }
 
     public void gotoStatistic(View view) {
-        Intent intent = new Intent(this, Statistic.class);
+        Intent intent = new Intent(this, StatisticActivity.class);
         startActivity(intent);
     }
 }

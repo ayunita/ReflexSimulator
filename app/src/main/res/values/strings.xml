@@ -12,4 +12,5 @@
     <string name="start_instruction">START!</string>
     <string name="title_activity_test">Test</string>
     <string name="title_activity_instruction">Instruction</string>
+    <string name="title_activity_list_player_dialog">ListPlayerDialog</string>
 </resources>

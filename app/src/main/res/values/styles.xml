@@ -21,7 +21,7 @@
         <item name="background">@color/primary_color</item>
     </style>
 
-    <!-- Instruction dialog custom theme -->
+    <!-- InstructionActivity dialog custom theme -->
     <style name="InstructionTheme" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@drawable/button</item>
     </style>

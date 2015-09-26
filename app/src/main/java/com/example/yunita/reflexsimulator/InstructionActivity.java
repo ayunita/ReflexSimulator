@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-public class Instruction extends Activity {
+public class InstructionActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class Instruction extends Activity {
     }
 
     public void dismiss(View view) {
-        ReactionTimer.isDismiss = true;
+        ReactionTimerActivity.isDismiss = true;
         finish();
     }
 

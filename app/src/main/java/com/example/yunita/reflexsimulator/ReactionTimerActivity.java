@@ -1,5 +1,7 @@
 package com.example.yunita.reflexsimulator;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,10 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
-public class ReactionTimer extends AppCompatActivity {
+public class ReactionTimerActivity extends AppCompatActivity {
+
+    private static final String FILENAME = "file1.sav";
 
     private TextView start_signal;
     private TextView reflex_result;
@@ -41,7 +47,7 @@ public class ReactionTimer extends AppCompatActivity {
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
         restart_button = (Button)findViewById(R.id.restart_button);
 
-        Intent instruction_intent = new Intent(this, Instruction.class);
+        Intent instruction_intent = new Intent(this, InstructionActivity.class);
         startActivity(instruction_intent);
 
         reflex_button.setOnTouchListener(new View.OnTouchListener() {
@@ -131,12 +137,16 @@ public class ReactionTimer extends AppCompatActivity {
             reflex_button.setEnabled(false);
             endTime = (int) System.currentTimeMillis();
             start_signal.setText("Good job!");
+
             // show the result and the button has been clicked
             reflex_button.setSelected(true);
-            reflex_result.setText(printOutResult(wait_time, getReflexTime()));
-            // write result
-            // NEED IMPLEMENTATION
+            int reflexTime = getReflexTime();
+            reflex_result.setText(printOutResult(wait_time, reflexTime));
 
+            // write result into a file
+            saveInFile(reflexTime);
+
+            // restart game
             restartGame();
         }
 
@@ -160,6 +170,20 @@ public class ReactionTimer extends AppCompatActivity {
                 start();
             }
         });
+    }
+
+    private void saveInFile(int reflexTime) {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);
+            fos.write(new String(Integer.toString(reflexTime)+"\n").getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }
