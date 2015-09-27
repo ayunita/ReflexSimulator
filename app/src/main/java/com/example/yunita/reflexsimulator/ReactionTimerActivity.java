@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-public class ReactionTimerActivity extends AppCompatActivity {
+public class ReactionTimerActivity extends Activity {
 
     private static final String FILENAME = "file1.sav";
 
@@ -172,17 +172,16 @@ public class ReactionTimerActivity extends AppCompatActivity {
         });
     }
 
+    // taken from ...
     private void saveInFile(int reflexTime) {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);
             fos.write(new String(Integer.toString(reflexTime)+"\n").getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
         }
     }
 

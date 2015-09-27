@@ -15,9 +15,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mainv2);
 
-        setMainLayout();
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
@@ -36,21 +35,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setMainLayout() {
-        Typeface icon_font = Typeface.createFromAsset(getAssets(), ICON);
-        TextView icon1 = (TextView) findViewById(R.id.reaction_timer_icon);
-        TextView icon2 = (TextView) findViewById(R.id.gameshow_icon);
-        TextView icon3 = (TextView) findViewById(R.id.statistic_icon);
-
-        icon1.setTypeface(icon_font);
-        icon2.setTypeface(icon_font);
-        icon3.setTypeface(icon_font);
-    }
-
     public void gotoSingleMode(View view) {
         Intent intent = new Intent(this, ReactionTimerActivity.class);
         startActivity(intent);
-
     }
 
     public void gotoPartyMode(View view) {

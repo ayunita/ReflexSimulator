@@ -13,4 +13,9 @@
     <string name="title_activity_test">Test</string>
     <string name="title_activity_instruction">Instruction</string>
     <string name="title_activity_list_player_dialog">ListPlayerDialog</string>
+
+    <string name="reaction_timer_menu"><i><b>REACTION TIMER</b></i>\nHow quick is your reflex?\nNever check it?\nThen try this out!</string>
+    <string name="gameshow_menu"><i><b>GAMESHOW BUZZER</b></i>\nAre you bored?\nFind your friend!\nAnd let\'s play together!</string>
+    <string name="statistic_menu"><i><b>STATISTIC</b></i>\nCheck your performance.\nTell your friends!\nAnd show it to the world!</string>
+    <string name="my_copyright">https://github.com/ayunita ©2015</string>
 </resources>

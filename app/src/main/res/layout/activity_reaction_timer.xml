@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/primary_color">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
         android:id="@+id/start_signal"
-        android:textColor="@color/first_color"/>
+        android:textColor="@color/third_color"/>
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/reflex_result"
         android:text=""
-        android:textColor="@color/first_color"/>
+        android:textColor="@color/third_color"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"

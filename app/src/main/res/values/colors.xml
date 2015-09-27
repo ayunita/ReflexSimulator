@@ -5,5 +5,7 @@
     <color name="header_title_color">#FFFFFF</color>
     <color name="first_color">#00A8E1</color>
     <color name="second_color">#F44336</color>
+    <color name="third_color">#FFC726</color>
+    <color name="forth_color">#00AE68</color>
 
 </resources>
