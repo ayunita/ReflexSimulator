@@ -41,18 +41,9 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".InstructionDialog"
-            android:label="@string/title_activity_instruction_dialog"
-            android:parentActivityName=".ReactionTimerActivity" >
-        </activity>
-        <activity
             android:name=".InstructionActivity"
             android:label="@string/title_activity_instruction"
             android:theme="@android:style/Theme.Dialog" >
-        </activity>
-        <activity
-            android:name=".ListPlayerDialog"
-            android:label="@string/title_activity_list_player_dialog" >
         </activity>
     </application>
 

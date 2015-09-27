@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- taken from http://developer.android.com/guide/topics/ui/controls/button.html
-    modified by yunita-->
+<!-- taken from Android Developers
+    http://developer.android.com/guide/topics/ui/controls/button.html 2015
+    modified by Yunita-->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
         android:drawable="@drawable/button" /> <!-- pressed -->

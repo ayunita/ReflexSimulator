@@ -100,9 +100,11 @@ public class ReactionTimerActivity extends Activity {
     public void start() {
         restart_button.setVisibility(View.INVISIBLE);
         reflex_button.setEnabled(true);
-        /*taken from http://developer.android.com/reference/android/os/CountDownTimer.html
-          modified by yunita
-        */
+
+        /* taken from Android Developers
+            http://developer.android.com/reference/android/os/CountDownTimer.html 2015
+            modified by Yunita*/
+
         timer = new CountDownTimer(randomWaitTime(), 1) {
             @Override
             public void onTick(long l) {
@@ -172,7 +174,9 @@ public class ReactionTimerActivity extends Activity {
         });
     }
 
-    // taken from ...
+    /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
+        https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
+
     private void saveInFile(int reflexTime) {
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);

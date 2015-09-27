@@ -28,7 +28,7 @@ public class GameshowActivity extends Activity {
     private Button player4_button;
 
     private int playerMode;
-
+    private int counters[] = new int[9];
 
     private final static String FILENAME = "file2.sav";
 
@@ -47,33 +47,33 @@ public class GameshowActivity extends Activity {
         player1_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showResult(player1_button.getText().toString());
+                setButtonEvent(player1_button.getText().toString());
             }
         });
 
         player2_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showResult(player2_button.getText().toString());
+                setButtonEvent(player2_button.getText().toString());
             }
         });
 
         player3_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showResult(player3_button.getText().toString());
+                setButtonEvent(player3_button.getText().toString());
             }
         });
 
         player4_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showResult(player4_button.getText().toString());
+                setButtonEvent(player4_button.getText().toString());
             }
         });
 
         showDialog();
-        loadFromFile(2);
+
     }
 
 
@@ -119,36 +119,90 @@ public class GameshowActivity extends Activity {
         playerMode = 4;
     }
 
-    public void showResult(String playerNum){
+    private void setButtonEvent(String player){
+        int playerNumber = Integer.parseInt(player);
+        showResult(playerNumber);
+        loadFromFile();
+        updateCounter(playerMode, playerNumber);
+        saveInFile();
+    }
+
+    public void showResult(int playerNum){
         AlertDialog alertDialog = new AlertDialog.Builder(GameshowActivity.this).create();
         alertDialog.setMessage("PLAYER " + playerNum + "!");
         alertDialog.show();
     }
 
-    // taken from ...
-    private void loadFromFile(int number) {
-        ArrayList<Integer> counters = new ArrayList<Integer>();
+    private void updateCounter(int mode, int player){
+        int startIndex = 0;
+        switch(mode){
+            case 2: startIndex = 0;
+                break;
+            case 3: startIndex = 2;
+                break;
+            case 4: startIndex = 5;
+                break;
+        }
+        int playerIndex = startIndex + player - 1;
+        int newCounter = counters[playerIndex] + 1; // index = player - 1
+        counters[playerIndex] = newCounter;
+    }
+
+    /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
+       https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
+
+    private void loadFromFile() {
+        int i = 0;
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line = in.readLine();
             while (line != null) {
-                counters.add(Integer.parseInt(line));
+                if(line != ""){
+                    counters[i] = Integer.parseInt(line);
+                    i++;
+                }
                 line = in.readLine();
             }
         } catch (FileNotFoundException e) {
-            Log.w("LOADFROMFILE", "FILENOFOUND");
-            for(int i = 0; i < number; i++){
-                counters.add(0);
-                Log.w(">>>>>>>>>>>>>", counters.get(i).toString());
-            }
+            createNewFileSave();
         } catch (IOException e) {
             Log.w("IOEXCEPTION", "EXCEPTION");
         }
     }
 
-    // taken from http://developer.android.com/reference/android/app/DialogFragment.html
-    // modified by yunita
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            for(int i = 0; i < 9; i++) {
+                fos.write(new String(Integer.toString(counters[i]) + "\n").getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+    }
+
+    private void createNewFileSave(){
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, 0);
+            for(int i = 0; i < 9; i++) {
+                counters[i] = 0; // initialize counters when file is not found
+                fos.write(new String(Integer.toString(0) + "\n").getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+    }
+
+    /* taken from Android Developers
+        http://developer.android.com/reference/android/app/DialogFragment.html 2015
+        modified by Yunita */
 
     private void showDialog() {
         DialogFragment newFragment = PlayerDialogFragment.newInstance(R.string.title_activity_gameshow);

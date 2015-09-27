@@ -1,7 +1,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- taken from https://developer.android.com/training/basics/actionbar/styling.html
-        modified by yunita -->
+    <!-- taken from Android Developers
+        https://developer.android.com/training/basics/actionbar/styling.html 2015
+        modified by Yunita -->
 
     <!-- the theme applied to the application or activity -->
     <style name="CustomActionBarTheme"
