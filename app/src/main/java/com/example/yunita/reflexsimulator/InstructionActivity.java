@@ -16,10 +16,9 @@ public class InstructionActivity extends Activity {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    public void dismiss(View view) {
+    public void dismissInstruction(View view) {
         ReactionTimerActivity.isDismiss = true;
         finish();
     }
-
 
 }

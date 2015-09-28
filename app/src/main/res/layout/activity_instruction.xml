@@ -40,7 +40,7 @@
         android:text="Dismiss"
         android:layout_gravity="center"
         android:id="@+id/dismiss_button"
-        android:onClick="dismiss" />
+        android:onClick="dismissInstruction" />
 
 
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,25 +14,18 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Random;
 
 public class ReactionTimerActivity extends Activity {
-
-    private static final String FILENAME = "file1.sav";
 
     private TextView start_signal;
     private TextView reflex_result;
     private ImageButton reflex_button;
     private Button restart_button;
 
+    private static final String FILENAME = "file1.sav";
     static boolean isDismiss = false;
 
-    private CountDownTimer timer;
-    private int wait_time;
-    private boolean isTickDone;
-
-    private int startTime;
-    private int endTime;
+    private ReactionTime reactionTime = new ReactionTime();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +89,13 @@ public class ReactionTimerActivity extends Activity {
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
+    private void setToDefaultState(){
+        reflex_button.setSelected(false);
+        reflex_result.setText("");
+        start_signal.setText("");
+        reflex_button.setActivated(false);
+    }
+
     public void start() {
         restart_button.setVisibility(View.INVISIBLE);
         reflex_button.setEnabled(true);
@@ -104,11 +103,11 @@ public class ReactionTimerActivity extends Activity {
         /* taken from Android Developers
             http://developer.android.com/reference/android/os/CountDownTimer.html 2015
             modified by Yunita*/
-
-        timer = new CountDownTimer(randomWaitTime(), 1) {
+        reactionTime.setWait();
+        CountDownTimer timer = new CountDownTimer(reactionTime.getWait(), 1) {
             @Override
             public void onTick(long l) {
-                isTickDone = false;
+                reactionTime.setIsTick(false);
                 if(reflex_button.isPressed()){
                     start_signal.setText("Too fast!");
                     start();
@@ -117,58 +116,39 @@ public class ReactionTimerActivity extends Activity {
 
             @Override
             public void onFinish() {
-                isTickDone = true;
+                reactionTime.setIsTick(true);
                 start_signal.setText("START!");
-                startTime = (int) System.currentTimeMillis();
+                reactionTime.setStart();
             }
         }.start();
     }
 
-    public int randomWaitTime() {
-        Random random = new Random();
-        wait_time = random.nextInt(1991) + 10; // random waiting time in range 10-2000ms
-        return wait_time;
-    }
-
-    public int getReflexTime(){
-        return endTime - startTime;
-    }
-
     public void showResult() {
-        if (isTickDone == true) {
+        if (reactionTime.isTick()) {
             reflex_button.setEnabled(false);
-            endTime = (int) System.currentTimeMillis();
+            reactionTime.setEnd();
             start_signal.setText("Good job!");
 
             // show the result and the button has been clicked
             reflex_button.setSelected(true);
-            int reflexTime = getReflexTime();
-            reflex_result.setText(printOutResult(wait_time, reflexTime));
+            reactionTime.setReflex();
+            reflex_result.setText(reactionTime.printOutResult());
 
             // write result into a file
-            saveInFile(reflexTime);
+            saveInFile(reactionTime.getReflex());
 
             // restart game
+            restart_button.setVisibility(View.VISIBLE);
             restartGame();
         }
 
     }
 
-    public String printOutResult(int wait_time, int reflex_time) {
-        String result = "Waiting time: " + wait_time + " ms\n";
-        result += "Reflex time: " + reflex_time + " ms\n";
-        return result;
-    }
-
     public void restartGame(){
-        restart_button.setVisibility(View.VISIBLE);
         restart_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reflex_button.setSelected(false);
-                reflex_result.setText("");
-                start_signal.setText("");
-                reflex_button.setActivated(false);
+                setToDefaultState();
                 start();
             }
         });

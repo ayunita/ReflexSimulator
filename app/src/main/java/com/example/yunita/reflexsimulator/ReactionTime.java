@@ -1,37 +1,68 @@
 package com.example.yunita.reflexsimulator;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Random;
 
 /**
  * Created by yunita on 26/09/15.
  */
+
 public class ReactionTime {
 
-    private int time;
+    private int end;
+    private int start;
+    private int reflex;
+    private int wait;
+    private boolean isTick;
 
-    public ReactionTime(int time){
-        this.time = time;
+    public ReactionTime() {
+        this.isTick = false;
     }
 
-    public int getTime() {
-        return time;
+    public int getEnd() {
+        return end;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+    public void setEnd() {
+        this.end = (int) System.currentTimeMillis();
     }
 
-//    public ArrayList<ReactionTime> getSubList(ArrayList<ReactionTime> reactionTimes, int last){
-//        int start = reactionTimes.size()-1-last;
-//        int end = reactionTimes.size()-1;
-//        ArrayList<ReactionTime> list = new ArrayList<ReactionTime>(reactionTimes.subList(start,end));
-//        return list;
-//    }
-//
-//    public int getMinimumTime(ArrayList<ReactionTime> subList){
-//
-//        return 0;
-//    }
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart() {
+        this.start = (int) System.currentTimeMillis();
+    }
+
+    public int getReflex() {
+        return reflex;
+    }
+
+    public void setReflex() {
+        this.reflex = end - start;
+    }
+
+    public int getWait() {
+        return wait;
+    }
+
+    public void setWait() {
+        Random random = new Random();
+        this.wait = random.nextInt(1991) + 10; // random waiting time in range 10-2000ms
+    }
+
+    public boolean isTick() {
+        return isTick;
+    }
+
+    public void setIsTick(boolean isTick) {
+        this.isTick = isTick;
+    }
+
+    public String printOutResult() {
+        String result = "Waiting time: " + wait + " ms\n";
+        result += "Reflex time: " + reflex + " ms\n";
+        return result;
+    }
 
 }
