@@ -1,10 +1,11 @@
 package com.example.yunita.reflexsimulator;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-public class StatisticActivity extends AppCompatActivity {
+public class StatisticActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

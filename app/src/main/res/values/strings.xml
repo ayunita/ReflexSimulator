@@ -3,19 +3,21 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_single_player">Reaction Timer</string>
     <string name="title_activity_gameshow">Gameshow</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_statistic">Statistic</string>
-    <string name="title_activity_instruction_dialog">InstructionDialog</string>
-
-    <string name="instruction">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
-    <string name="start_instruction">START!</string>
-    <string name="title_activity_test">Test</string>
-    <string name="title_activity_instruction">Instruction</string>
-    <string name="title_activity_list_player_dialog">ListPlayerDialog</string>
 
     <string name="reaction_timer_menu"><i><b>REACTION TIMER</b></i>\nHow quick is your reflex?\nNever check it?\nThen try this out!</string>
     <string name="gameshow_menu"><i><b>GAMESHOW BUZZER</b></i>\nAre you bored?\nFind your friend!\nAnd let\'s play together!</string>
     <string name="statistic_menu"><i><b>STATISTIC</b></i>\nCheck your performance.\nTell your friends!\nAnd show it to the world!</string>
     <string name="my_copyright">https://github.com/ayunita ©2015</string>
+
+    <string name="instruction">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
+    <string name="start_instruction">START!</string>
+    <string name="title_activity_instruction">Instruction</string>
+    <string name="title_activity_list_player_dialog">ListPlayerDialog</string>
+
+    <string name="max_title"><b>MAX</b></string>
+    <string name="min_title"><b>MIN</b></string>
+    <string name="ave_title"><b>AVE</b></string>
+    <string name="med_title"><b>MED</b></string>
+
 </resources>

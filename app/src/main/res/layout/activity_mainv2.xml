@@ -14,8 +14,8 @@
         android:onClick="gotoSingleMode">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@drawable/button_icon"
             android:layout_gravity="center_vertical" />
 
@@ -40,8 +40,8 @@
         android:onClick="gotoPartyMode">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@drawable/gameshow_icon"
             android:layout_gravity="center_vertical" />
 
@@ -66,8 +66,8 @@
         android:onClick="gotoStatistic">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:background="@drawable/statistic_icon"
             android:layout_gravity="center_vertical" />
 
