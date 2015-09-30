@@ -73,6 +73,7 @@ public class ReactionTimerActivity extends Activity {
     public void onResume() {
         super.onResume();
         if (isDismiss) {
+            reflex_button.setVisibility(View.VISIBLE);
             start();
         }
     }

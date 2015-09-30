@@ -20,4 +20,7 @@
     <string name="ave_title"><b>AVE</b></string>
     <string name="med_title"><b>MED</b></string>
 
+    <string name="action_clear">clear</string>
+    <string name="action_email">email</string>
+
 </resources>

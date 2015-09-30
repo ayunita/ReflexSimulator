@@ -2,6 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.yunita.reflexsimulator.StatisticActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/clear_button"
+        android:title="@string/action_clear"
+        android:onClick="clearData"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/email_button"
+        android:title="@string/action_email"
+        android:onClick="sendToEmail"
+        app:showAsAction="always" />
+
 </menu>

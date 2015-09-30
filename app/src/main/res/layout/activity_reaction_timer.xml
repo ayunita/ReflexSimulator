@@ -21,7 +21,8 @@
         android:id="@+id/reflex_button"
         android:src="@drawable/custom_reflex_button"
         android:background="@null"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="wrap_content"
