@@ -22,9 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.example.yunita.reflexsimulator;
 
 import android.content.Context;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class GameManager {
 
@@ -47,11 +51,14 @@ public class GameManager {
         this.reactionTime = reactionTime;
     }
 
-    public String getReactionTimerResult() {
-        reactionTime.setEnd();
-        reactionTime.setReflex();
-        return reactionTime.printOutResult();
+    public BuzzerCount getBuzzerCount() {
+        return buzzerCount;
     }
+
+    public void setBuzzerCount(BuzzerCount buzzerCount) {
+        this.buzzerCount = buzzerCount;
+    }
+
     /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
        https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
 
@@ -63,8 +70,64 @@ public class GameManager {
         } catch (FileNotFoundException e) {
 
         } catch (IOException e) {
-
+            throw new IllegalArgumentException();
         }
+    }
+
+    public void getCurrentBuzzerCount(Context context) {
+        try {
+            int i = 0;
+            int counters[] = buzzerCount.getCounters();
+            FileInputStream fis = context.openFileInput(FILENAME2);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            String line = in.readLine();
+            while (line != null) {
+                if(line != ""){
+                    counters[i] = Integer.parseInt(line);
+                    i++;
+                }
+                line = in.readLine();
+            }
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void saveNewBuzzerCount(Context context) {
+        try {
+            int counters[] = buzzerCount.getCounters();
+            FileOutputStream fos = context.openFileOutput(FILENAME2, 0);
+            for(int i = 0; i < 9; i++) {
+                fos.write(new String(Integer.toString(counters[i]) + "\n").getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public String[] loadFromFile(Context context,String filename) {
+        ArrayList<String> results = new ArrayList<String>();
+        try {
+            FileInputStream fis = context.openFileInput(filename);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            String line = in.readLine();
+            while (line != null) {
+                if(line != ""){
+                    results.add(line);
+                }
+                line = in.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            //
+        } catch (IOException e) {
+            //
+        }
+        return results.toArray(new String[results.size()]);
     }
 
 }

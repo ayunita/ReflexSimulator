@@ -38,7 +38,7 @@ public class ReactionTimerActivity extends Activity {
     private ImageButton reflex_button;
     private Button restart_button;
 
-    static boolean isDismiss = false;
+    static boolean isInstructionDismiss = false;
     private GameManager gameManager = new GameManager();
 
     @Override
@@ -86,7 +86,7 @@ public class ReactionTimerActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        if (isDismiss) {
+        if (isInstructionDismiss) {
             reflex_button.setVisibility(View.VISIBLE);
             start();
         }
@@ -95,7 +95,7 @@ public class ReactionTimerActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-        isDismiss = false;
+        isInstructionDismiss = false;
     }
 
     @Override
@@ -144,7 +144,7 @@ public class ReactionTimerActivity extends Activity {
             reflex_button.setEnabled(false);
             start_signal.setText("Good job!");
             reflex_button.setSelected(true);
-            reflex_result.setText(gameManager.getReactionTimerResult());
+            reflex_result.setText(gameManager.getReactionTime().getReactionTimerResult());
             gameManager.saveReflexTime(this);
             restart_button.setVisibility(View.VISIBLE);
             restartGame();

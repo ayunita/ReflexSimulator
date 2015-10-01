@@ -1,7 +1,5 @@
 /*
-ReactionTime stores user's reflex info, and performs
-calculation to measure the maximum, minimum, mean, and
-median user's reflex in a particular time.
+ReactionTime stores user's reflex and count down timer information.
 
 Copyright (C) 2015  Andriani Yunita
 
@@ -82,34 +80,11 @@ public class ReactionTime {
         return result;
     }
 
-    public double max(double rangedSortedArray[]){
-        return rangedSortedArray[rangedSortedArray.length-1];
+    public String getReactionTimerResult() {
+        setEnd();
+        setReflex();
+        return printOutResult();
     }
 
-    public double min(double rangedSortedArray[]){
-        return rangedSortedArray[0];
-    }
-
-    public double median(double rangedSortedArray[]){
-        double median = 0;
-        int size = rangedSortedArray.length;
-        int mid = size / 2;
-        if(size % 2 == 0){
-            double left = rangedSortedArray[mid - 1];
-            double right = rangedSortedArray[mid];
-            median = (left + right)/2;
-        } else {
-            median = rangedSortedArray[mid];
-        }
-        return median;
-    }
-
-    public double average(double rangedSortedArray[]){
-        double mean = 0;
-        for(double i : rangedSortedArray){
-            mean += i;
-        }
-        return (mean/rangedSortedArray.length);
-    }
 
 }

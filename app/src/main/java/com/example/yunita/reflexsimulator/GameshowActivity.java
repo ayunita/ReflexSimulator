@@ -1,3 +1,23 @@
+/*
+GameshowActivity served as buzzers for multiplayer trivia game.
+It determines who gets to answer by who pressed the buzzer first.
+
+Copyright (C) 2015  Andriani Yunita
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.example.yunita.reflexsimulator;
 
 import android.app.Activity;
@@ -6,17 +26,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class GameshowActivity extends Activity {
 
@@ -25,9 +37,7 @@ public class GameshowActivity extends Activity {
     private Button player3_button;
     private Button player4_button;
 
-    private final static String FILENAME = "file2.sav";
-
-    private BuzzerCount buzzerCount = new BuzzerCount();
+    private GameManager gameManager = new GameManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,39 +54,42 @@ public class GameshowActivity extends Activity {
         player1_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buzzerCount.setPlayer(1);
-                setButtonEvent(buzzerCount.getPlayer());
+                gameManager.getBuzzerCount().setPlayer(1);
+                showClickedButton(1);
+                showResult();
             }
         });
 
         player2_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buzzerCount.setPlayer(2);
-                setButtonEvent(buzzerCount.getPlayer());
+                gameManager.getBuzzerCount().setPlayer(2);
+                showClickedButton(2);
+                showResult();
             }
         });
 
         player3_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buzzerCount.setPlayer(3);
-                setButtonEvent(buzzerCount.getPlayer());
+                gameManager.getBuzzerCount().setPlayer(3);
+                showClickedButton(3);
+                showResult();
             }
         });
 
         player4_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buzzerCount.setPlayer(4);
-                setButtonEvent(buzzerCount.getPlayer());
+                gameManager.getBuzzerCount().setPlayer(4);
+                showClickedButton(4);
+                showResult();
             }
         });
 
         showDialog();
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -102,14 +115,14 @@ public class GameshowActivity extends Activity {
     private void createTwoPlayersView() {
         player1_button.setVisibility(View.VISIBLE);
         player2_button.setVisibility(View.VISIBLE);
-        buzzerCount.setMode(2);
+        gameManager.getBuzzerCount().setMode(2);
     }
 
     private void createThreePlayersView() {
         player1_button.setVisibility(View.VISIBLE);
         player2_button.setVisibility(View.VISIBLE);
         player3_button.setVisibility(View.VISIBLE);
-        buzzerCount.setMode(3);
+        gameManager.getBuzzerCount().setMode(3);
     }
 
     private void createFourPlayersView() {
@@ -117,76 +130,19 @@ public class GameshowActivity extends Activity {
         player2_button.setVisibility(View.VISIBLE);
         player3_button.setVisibility(View.VISIBLE);
         player4_button.setVisibility(View.VISIBLE);
-        buzzerCount.setMode(4);
+        gameManager.getBuzzerCount().setMode(4);
     }
 
-    public void showResult(int playerNum){
+    public void showClickedButton(int playerNum){
         AlertDialog alertDialog = new AlertDialog.Builder(GameshowActivity.this).create();
         alertDialog.setMessage("PLAYER " + playerNum + "!");
         alertDialog.show();
     }
 
-    public void setButtonEvent(int player){
-        showResult(player);
-        loadFromFile();
-        buzzerCount.updateCounter();
-        saveInFile();
-    }
-
-
-    /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
-       https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
-
-    private void loadFromFile() {
-        try {
-            int i = 0;
-            int counters[] = buzzerCount.getCounters();
-            FileInputStream fis = openFileInput(FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            String line = in.readLine();
-            while (line != null) {
-                if(line != ""){
-                    counters[i] = Integer.parseInt(line);
-                    i++;
-                }
-                line = in.readLine();
-            }
-        } catch (FileNotFoundException e) {
-            createNewSaveFile();
-        } catch (IOException e) {
-            Log.w("IOEXCEPTION", "EXCEPTION");
-        }
-    }
-
-    private void saveInFile() {
-        try {
-            int counters[] = buzzerCount.getCounters();
-            FileOutputStream fos = openFileOutput(FILENAME, 0);
-            for(int i = 0; i < 9; i++) {
-                fos.write(new String(Integer.toString(counters[i]) + "\n").getBytes());
-            }
-            fos.close();
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-
-        }
-    }
-
-    private void createNewSaveFile(){
-        try {
-            int counters[] = buzzerCount.getCounters();
-            FileOutputStream fos = openFileOutput(FILENAME, 0);
-            for(int i = 0; i < 9; i++) {
-                counters[i] = 0; // initialize counters when file is not found
-                fos.write(new String(Integer.toString(0) + "\n").getBytes());
-            }
-            fos.close();
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-
-        }
+    public void showResult(){
+        gameManager.getCurrentBuzzerCount(this);
+        gameManager.getBuzzerCount().updateCounter();
+        gameManager.saveNewBuzzerCount(this);
     }
 
     /* taken from Android Developers
