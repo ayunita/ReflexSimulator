@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.example.yunita.reflexsimulator;
 
 import android.content.Context;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -65,7 +66,7 @@ public class GameManager {
     public void saveReflexTime(Context context) {
         try {
             FileOutputStream fos = context.openFileOutput(FILENAME1, Context.MODE_APPEND);
-            fos.write(new String(Integer.toString(reactionTime.getReflex())+"\n").getBytes());
+            fos.write(new String(Integer.toString(reactionTime.getReflex()) + "\n").getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
 
@@ -82,7 +83,7 @@ public class GameManager {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line = in.readLine();
             while (line != null) {
-                if(line != ""){
+                if (line != "") {
                     counters[i] = Integer.parseInt(line);
                     i++;
                 }
@@ -99,7 +100,7 @@ public class GameManager {
         try {
             int counters[] = buzzerCount.getCounters();
             FileOutputStream fos = context.openFileOutput(FILENAME2, 0);
-            for(int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9; i++) {
                 fos.write(new String(Integer.toString(counters[i]) + "\n").getBytes());
             }
             fos.close();
@@ -110,14 +111,14 @@ public class GameManager {
         }
     }
 
-    public String[] loadFromFile(Context context,String filename) {
+    public String[] loadFromFile(Context context, String filename) {
         ArrayList<String> results = new ArrayList<String>();
         try {
             FileInputStream fis = context.openFileInput(filename);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line = in.readLine();
             while (line != null) {
-                if(line != ""){
+                if (line != "") {
                     results.add(line);
                 }
                 line = in.readLine();

@@ -33,12 +33,11 @@ import android.widget.TextView;
 
 public class ReactionTimerActivity extends Activity {
 
+    static boolean isInstructionDismiss = false;
     private TextView start_signal;
     private TextView reflex_result;
     private ImageButton reflex_button;
     private Button restart_button;
-
-    static boolean isInstructionDismiss = false;
     private GameManager gameManager = new GameManager();
 
     @Override
@@ -51,7 +50,7 @@ public class ReactionTimerActivity extends Activity {
         start_signal = (TextView) findViewById(R.id.start_signal);
         reflex_result = (TextView) findViewById(R.id.reflex_result);
         reflex_button = (ImageButton) findViewById(R.id.reflex_button);
-        restart_button = (Button)findViewById(R.id.restart_button);
+        restart_button = (Button) findViewById(R.id.restart_button);
 
         Intent instruction_intent = new Intent(this, InstructionActivity.class);
         startActivity(instruction_intent);
@@ -104,7 +103,7 @@ public class ReactionTimerActivity extends Activity {
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
-    private void setToDefaultState(){
+    private void setToDefaultState() {
         reflex_button.setSelected(false);
         reflex_result.setText("");
         start_signal.setText("");
@@ -124,7 +123,7 @@ public class ReactionTimerActivity extends Activity {
             @Override
             public void onTick(long l) {
                 gameManager.getReactionTime().setIsTick(true);
-                if(reflex_button.isPressed()){
+                if (reflex_button.isPressed()) {
                     start_signal.setText("Too fast!");
                     start();
                 }
@@ -140,7 +139,7 @@ public class ReactionTimerActivity extends Activity {
     }
 
     public void showResult() {
-        if(!gameManager.getReactionTime().isTick()) {
+        if (!gameManager.getReactionTime().isTick()) {
             reflex_button.setEnabled(false);
             start_signal.setText("Good job!");
             reflex_button.setSelected(true);
@@ -151,7 +150,7 @@ public class ReactionTimerActivity extends Activity {
         }
     }
 
-    public void restartGame(){
+    public void restartGame() {
         restart_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

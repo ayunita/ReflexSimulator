@@ -26,7 +26,7 @@ public class BuzzerCount {
     private int mode;
     private int player;
 
-    public BuzzerCount(){
+    public BuzzerCount() {
 
     }
 
@@ -54,33 +54,36 @@ public class BuzzerCount {
         this.player = player;
     }
 
-    public int getStartIndexMode(int mode){
+    public int getStartIndexMode(int mode) {
         int startIndex = 0;
-        switch(mode){
-            case 2: startIndex = 0;
+        switch (mode) {
+            case 2:
+                startIndex = 0;
                 break;
-            case 3: startIndex = 2;
+            case 3:
+                startIndex = 2;
                 break;
-            case 4: startIndex = 5;
+            case 4:
+                startIndex = 5;
                 break;
         }
         return startIndex;
     }
 
-    public void updateCounter(){
+    public void updateCounter() {
         int startIndex = getStartIndexMode(mode);
         int playerIndex = startIndex + player - 1;
         int newCounter = counters[playerIndex] + 1; // index = player - 1
         counters[playerIndex] = newCounter;
     }
 
-    public String getModeResult(int mode, String[] savedData){
+    public String getModeResult(int mode, String[] savedData) {
         int start = getStartIndexMode(mode);
         int end = start + mode;
         int player = 1;
         String result = "MODE: " + mode + "\n";
-        for(int i = start; i < end; i++){
-            if(!savedData[i].equals("0")) {
+        for (int i = start; i < end; i++) {
+            if (!savedData[i].equals("0") && !savedData[i].equals("1")) {
                 result += "Player " + player + ": " + savedData[i] + " buzzes\n";
             } else {
                 result += "Player " + player + ": " + savedData[i] + " buzz\n";

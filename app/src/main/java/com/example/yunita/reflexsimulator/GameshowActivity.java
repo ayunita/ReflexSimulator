@@ -46,10 +46,10 @@ public class GameshowActivity extends Activity {
 
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
-        player1_button = (Button)findViewById(R.id.player1_button);
-        player2_button = (Button)findViewById(R.id.player2_button);
-        player3_button = (Button)findViewById(R.id.player3_button);
-        player4_button = (Button)findViewById(R.id.player4_button);
+        player1_button = (Button) findViewById(R.id.player1_button);
+        player2_button = (Button) findViewById(R.id.player2_button);
+        player3_button = (Button) findViewById(R.id.player3_button);
+        player4_button = (Button) findViewById(R.id.player4_button);
 
         player1_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,13 +133,13 @@ public class GameshowActivity extends Activity {
         gameManager.getBuzzerCount().setMode(4);
     }
 
-    public void showClickedButton(int playerNum){
+    public void showClickedButton(int playerNum) {
         AlertDialog alertDialog = new AlertDialog.Builder(GameshowActivity.this).create();
         alertDialog.setMessage("PLAYER " + playerNum + "!");
         alertDialog.show();
     }
 
-    public void showResult(){
+    public void showResult() {
         gameManager.getCurrentBuzzerCount(this);
         gameManager.getBuzzerCount().updateCounter();
         gameManager.saveNewBuzzerCount(this);

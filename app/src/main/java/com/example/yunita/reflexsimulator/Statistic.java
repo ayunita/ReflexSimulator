@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.example.yunita.reflexsimulator;
 
 import android.content.Context;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,34 +31,34 @@ public class Statistic {
     private Utilities util = new Utilities();
     private GameManager gameManager = new GameManager();
 
-    public Statistic(){
+    public Statistic() {
 
     }
 
-    public String getReactionTimerResult(Context context){
+    public String getReactionTimerResult(Context context) {
         String results[] = gameManager.loadFromFile(context, "file1.sav");
         String output = "";
-        if(results.length != 0) {
+        if (results.length != 0) {
             double lastTen[] = util.getRangedSortedArray(10, util.convertToDoubleArray(results));
             double lastHundred[] = util.getRangedSortedArray(100, util.convertToDoubleArray(results));
-            output += "MAX 10: " + String.format("%.2f", max(lastTen)) + " ms\n";
-            output += "MAX 100: " + String.format("%.2f", max(lastHundred)) + " ms\n";
-            output += "MIN 10: " + String.format("%.2f", min(lastTen)) + " ms \n";
-            output += "MIN 100: " + String.format("%.2f", min(lastHundred)) + " ms \n";
-            output += "MED 10: " + String.format("%.2f", median(lastTen)) + " ms \n";
-            output += "MED 100: " + String.format("%.2f", median(lastHundred)) + " ms \n";
-            output += "AVE 10: " + String.format("%.2f", average(lastTen)) + " ms \n";
-            output += "AVE 100: " + String.format("%.2f", average(lastHundred)) + " ms \n";
+            output += "MAX last 10: " + String.format("%.2f", max(lastTen)) + " ms\n";
+            output += "MAX last 100: " + String.format("%.2f", max(lastHundred)) + " ms\n";
+            output += "MIN last 10: " + String.format("%.2f", min(lastTen)) + " ms \n";
+            output += "MIN last 100: " + String.format("%.2f", min(lastHundred)) + " ms \n";
+            output += "MED last 10: " + String.format("%.2f", median(lastTen)) + " ms \n";
+            output += "MED last 100: " + String.format("%.2f", median(lastHundred)) + " ms \n";
+            output += "AVE last 10: " + String.format("%.2f", average(lastTen)) + " ms \n";
+            output += "AVE last 100: " + String.format("%.2f", average(lastHundred)) + " ms \n";
         } else {
             output = "You haven't played Reaction Timer :(";
         }
         return output;
     }
 
-    public String getGameshowResult(Context context){
+    public String getGameshowResult(Context context) {
         String results[] = gameManager.loadFromFile(context, "file2.sav");
         String output = "";
-        if(results.length != 0){
+        if (results.length != 0) {
             output += gameManager.getBuzzerCount().getModeResult(2, results);
             output += gameManager.getBuzzerCount().getModeResult(3, results);
             output += gameManager.getBuzzerCount().getModeResult(4, results);
@@ -67,7 +68,7 @@ public class Statistic {
         return output;
     }
 
-    public void clearStatistic(Context context){
+    public void clearStatistic(Context context) {
         try {
             FileOutputStream fos1 = context.openFileOutput("file1.sav", 0);
             FileOutputStream fos2 = context.openFileOutput("file2.sav", 0);
@@ -80,33 +81,33 @@ public class Statistic {
         }
     }
 
-    public double max(double rangedSortedArray[]){
-        return rangedSortedArray[rangedSortedArray.length-1];
+    public double max(double rangedSortedArray[]) {
+        return rangedSortedArray[rangedSortedArray.length - 1];
     }
 
-    public double min(double rangedSortedArray[]){
+    public double min(double rangedSortedArray[]) {
         return rangedSortedArray[0];
     }
 
-    public double median(double rangedSortedArray[]){
+    public double median(double rangedSortedArray[]) {
         double median = 0;
         int size = rangedSortedArray.length;
         int mid = size / 2;
-        if(size % 2 == 0){
+        if (size % 2 == 0) {
             double left = rangedSortedArray[mid - 1];
             double right = rangedSortedArray[mid];
-            median = (left + right)/2;
+            median = (left + right) / 2;
         } else {
             median = rangedSortedArray[mid];
         }
         return median;
     }
 
-    public double average(double rangedSortedArray[]){
+    public double average(double rangedSortedArray[]) {
         double mean = 0;
-        for(double i : rangedSortedArray){
+        for (double i : rangedSortedArray) {
             mean += i;
         }
-        return (mean/rangedSortedArray.length);
+        return (mean / rangedSortedArray.length);
     }
 }

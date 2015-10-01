@@ -41,14 +41,14 @@ public class StatisticActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
-        result = (TextView)findViewById(R.id.stats_result2);
+        result = (TextView) findViewById(R.id.stats_result2);
 
         setResult(R.id.stats_result1, stat.getReactionTimerResult(this));
         setResult(R.id.stats_result2, stat.getGameshowResult(this));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_statistic, menu);
         return super.onCreateOptionsMenu(menu);
@@ -75,18 +75,18 @@ public class StatisticActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
-    public void setResult(int id, String gameResult){
-        result = (TextView)findViewById(id);
+    public void setResult(int id, String gameResult) {
+        result = (TextView) findViewById(id);
         result.setText(gameResult);
     }
 
-    public void clearData(MenuItem item){
+    public void clearData(MenuItem item) {
         stat.clearStatistic(this);
         setResult(R.id.stats_result1, stat.getReactionTimerResult(this));
         setResult(R.id.stats_result2, stat.getGameshowResult(this));
     }
 
-    public void sendToEmail(MenuItem item){
+    public void sendToEmail(MenuItem item) {
         // CODE HERE
     }
 

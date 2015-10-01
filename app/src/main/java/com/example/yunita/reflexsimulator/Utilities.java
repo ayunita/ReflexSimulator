@@ -23,20 +23,20 @@ import java.util.Arrays;
 
 public class Utilities {
 
-    public Utilities(){
+    public Utilities() {
 
     }
 
-    public double[] convertToDoubleArray(String strings[]){
+    public double[] convertToDoubleArray(String strings[]) {
         double newArray[] = new double[strings.length];
-        for(int i = 0; i < strings.length; i++){
+        for (int i = 0; i < strings.length; i++) {
             newArray[i] = Double.parseDouble(strings[i]);
         }
         return newArray;
     }
 
-    public double[] getRangedSortedArray(int last, double savedData[]){
-        if(savedData.length >= last) {
+    public double[] getRangedSortedArray(int last, double savedData[]) {
+        if (savedData.length >= last) {
             int end = savedData.length; //exclusive
             int start = savedData.length - last;
             double subArray[] = Arrays.copyOfRange(savedData, start, end);
