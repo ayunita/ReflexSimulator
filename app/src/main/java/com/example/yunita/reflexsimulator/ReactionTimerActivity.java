@@ -1,7 +1,26 @@
+/*
+ReactionTimerActivity performs the reaction times measurement
+by clicking the button.
+
+Copyright (C) 2015  Andriani Yunita
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.example.yunita.reflexsimulator;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,9 +30,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class ReactionTimerActivity extends Activity {
 
@@ -22,10 +38,8 @@ public class ReactionTimerActivity extends Activity {
     private ImageButton reflex_button;
     private Button restart_button;
 
-    private static final String FILENAME = "file1.sav";
     static boolean isDismiss = false;
-
-    private ReactionTime reactionTime = new ReactionTime();;
+    private GameManager gameManager = new GameManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,11 +118,12 @@ public class ReactionTimerActivity extends Activity {
         /* taken from Android Developers
             http://developer.android.com/reference/android/os/CountDownTimer.html 2015
             modified by Yunita*/
-        reactionTime.setWait();
-        CountDownTimer timer = new CountDownTimer(reactionTime.getWait(), 1) {
+
+        gameManager.getReactionTime().setWait();
+        CountDownTimer timer = new CountDownTimer(gameManager.getReactionTime().getWait(), 1) {
             @Override
             public void onTick(long l) {
-                reactionTime.setIsTick(false);
+                gameManager.getReactionTime().setIsTick(true);
                 if(reflex_button.isPressed()){
                     start_signal.setText("Too fast!");
                     start();
@@ -117,32 +132,23 @@ public class ReactionTimerActivity extends Activity {
 
             @Override
             public void onFinish() {
-                reactionTime.setIsTick(true);
+                gameManager.getReactionTime().setIsTick(false);
                 start_signal.setText("START!");
-                reactionTime.setStart();
+                gameManager.getReactionTime().setStart();
             }
         }.start();
     }
 
     public void showResult() {
-        if (reactionTime.isTick()) {
+        if(!gameManager.getReactionTime().isTick()) {
             reflex_button.setEnabled(false);
-            reactionTime.setEnd();
             start_signal.setText("Good job!");
-
-            // show the result and the button has been clicked
             reflex_button.setSelected(true);
-            reactionTime.setReflex();
-            reflex_result.setText(reactionTime.printOutResult());
-
-            // write result into a file
-            saveInFile(reactionTime.getReflex());
-
-            // restart game
+            reflex_result.setText(gameManager.getReactionTimerResult());
+            gameManager.saveReflexTime(this);
             restart_button.setVisibility(View.VISIBLE);
             restartGame();
         }
-
     }
 
     public void restartGame(){
@@ -153,21 +159,6 @@ public class ReactionTimerActivity extends Activity {
                 start();
             }
         });
-    }
-
-    /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
-        https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
-
-    private void saveInFile(int reflexTime) {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);
-            fos.write(new String(Integer.toString(reflexTime)+"\n").getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-
-        }
     }
 
 }
