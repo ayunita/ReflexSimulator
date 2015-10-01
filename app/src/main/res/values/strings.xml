@@ -10,7 +10,7 @@
     <string name="statistic_menu"><i><b>STATISTIC</b></i>\nCheck your performance.\nTell your friends!\nAnd show it to the world!</string>
     <string name="my_copyright">https://github.com/ayunita ©2015</string>
 
-    <string name="instruction">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </string>
+    <string name="instruction">Once you see the START! signal, click the red button as quick as possible.</string>
     <string name="start_instruction">START!</string>
     <string name="title_activity_instruction">Instruction</string>
     <string name="title_activity_list_player_dialog">ListPlayerDialog</string>

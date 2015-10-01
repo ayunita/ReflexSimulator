@@ -32,7 +32,7 @@ public class StatisticActivity extends AppCompatActivity {
 
     private TextView result;
 
-    private Statistic stat = new Statistic();
+    private GameManager gameManager = new GameManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +41,8 @@ public class StatisticActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
 
-        result = (TextView) findViewById(R.id.stats_result2);
-
-        setResult(R.id.stats_result1, stat.getReactionTimerResult(this));
-        setResult(R.id.stats_result2, stat.getGameshowResult(this));
+        setResult(R.id.stats_result1, gameManager.printOutReactionTimerResult(this));
+        setResult(R.id.stats_result2, gameManager.printOutGameshowResult(this));
     }
 
     @Override
@@ -81,14 +79,16 @@ public class StatisticActivity extends AppCompatActivity {
     }
 
     public void clearData(MenuItem item) {
-        stat.clearStatistic(this);
-        setResult(R.id.stats_result1, stat.getReactionTimerResult(this));
-        setResult(R.id.stats_result2, stat.getGameshowResult(this));
+        gameManager.clearSavedData(this);
+        setResult(R.id.stats_result1, gameManager.printOutReactionTimerResult(this));
+        setResult(R.id.stats_result2, gameManager.printOutGameshowResult(this));
     }
 
-    public void sendToEmail(MenuItem item) {
-        // CODE HERE
+    public void emailResult(MenuItem item) {
+        String output = gameManager.printOutReactionTimerResult(this)
+                + "\n" + gameManager.printOutGameshowResult(this);
+        String subject = "Reflex Simulator - Result";
+        gameManager.handleEmail(this, subject, output);
     }
-
 
 }

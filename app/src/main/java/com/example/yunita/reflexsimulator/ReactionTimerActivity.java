@@ -115,8 +115,8 @@ public class ReactionTimerActivity extends Activity {
         reflex_button.setEnabled(true);
 
         /* taken from Android Developers
-            http://developer.android.com/reference/android/os/CountDownTimer.html 2015
-            modified by Yunita*/
+            http://developer.android.com/reference/android/os/CountDownTimer.html
+            (C) 2015 Android Developers modified by Yunita. */
 
         gameManager.getReactionTime().setWait();
         CountDownTimer timer = new CountDownTimer(gameManager.getReactionTime().getWait(), 1) {

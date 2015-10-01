@@ -146,8 +146,8 @@ public class GameshowActivity extends Activity {
     }
 
     /* taken from Android Developers
-        http://developer.android.com/reference/android/app/DialogFragment.html 2015
-        modified by Yunita */
+       http://developer.android.com/reference/android/app/DialogFragment.html
+       (C) 2015 Android Developers modified by Yunita */
 
     private void showDialog() {
         DialogFragment newFragment = PlayerDialogFragment.newInstance(R.string.title_activity_gameshow);

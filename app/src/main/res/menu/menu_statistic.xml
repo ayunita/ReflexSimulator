@@ -10,7 +10,7 @@
 
     <item android:id="@+id/email_button"
         android:title="@string/action_email"
-        android:onClick="sendToEmail"
+        android:onClick="emailResult"
         app:showAsAction="always" />
 
 </menu>

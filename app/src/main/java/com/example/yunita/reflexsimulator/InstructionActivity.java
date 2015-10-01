@@ -21,10 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.example.yunita.reflexsimulator;
 
 import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 
 public class InstructionActivity extends Activity {
 
@@ -34,6 +36,20 @@ public class InstructionActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_instruction);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        /*  taken from stackoverflow
+            stackoverflow.com/questions/15022152/how-to-animate-gif-images-in-an-android
+           (C) 2015 Shobhit Puri  modified by Yunita. */
+
+        final ImageView gif = (ImageView)findViewById(R.id.instruction_gif);
+        gif.setBackgroundResource(R.drawable.instruction_gif);
+        gif.post(new Runnable() {
+            @Override
+            public void run() {
+                AnimationDrawable frameAnimation = (AnimationDrawable) gif.getBackground();
+                frameAnimation.start();
+            }
+        });
     }
 
     public void dismissInstruction(View view) {

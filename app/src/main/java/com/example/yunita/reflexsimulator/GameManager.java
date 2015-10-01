@@ -1,7 +1,7 @@
 /*
 GameManager holds the reaction time and buzzer count data,
 and stores them into files. It is also capable to load those
-data from files.
+data from files, and print out and send the result.
 
 Copyright (C) 2015  Andriani Yunita
 
@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package com.example.yunita.reflexsimulator;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -38,10 +39,14 @@ public class GameManager {
 
     private ReactionTime reactionTime;
     private BuzzerCount buzzerCount;
+    private Statistic statistic;
+    private Utilities util;
 
     public GameManager() {
         reactionTime = new ReactionTime();
         buzzerCount = new BuzzerCount();
+        statistic = new Statistic();
+        util = new Utilities();
     }
 
     public ReactionTime getReactionTime() {
@@ -60,8 +65,42 @@ public class GameManager {
         this.buzzerCount = buzzerCount;
     }
 
+    public String printOutReactionTimerResult(Context context) {
+        String results[] = loadFromFile(context, FILENAME1);
+        String output = "";
+        if (results.length != 0) {
+            double lastTen[] = util.getRangedSortedArray(10, util.convertToDoubleArray(results));
+            double lastHundred[] = util.getRangedSortedArray(100, util.convertToDoubleArray(results));
+            output += "MAX last 10: " + String.format("%.2f", statistic.max(lastTen)) + " ms\n";
+            output += "MAX last 100: " + String.format("%.2f", statistic.max(lastHundred)) + " ms\n";
+            output += "MIN last 10: " + String.format("%.2f", statistic.min(lastTen)) + " ms \n";
+            output += "MIN last 100: " + String.format("%.2f", statistic.min(lastHundred)) + " ms \n";
+            output += "MED last 10: " + String.format("%.2f", statistic.median(lastTen)) + " ms \n";
+            output += "MED last 100: " + String.format("%.2f", statistic.median(lastHundred)) + " ms \n";
+            output += "AVE last 10: " + String.format("%.2f", statistic.average(lastTen)) + " ms \n";
+            output += "AVE last 100: " + String.format("%.2f", statistic.average(lastHundred)) + " ms \n";
+        } else {
+            output = "You haven't played Reaction Timer :(";
+        }
+        return output;
+    }
+
+    public String printOutGameshowResult(Context context) {
+        String results[] = loadFromFile(context, FILENAME2);
+        String output = "";
+        if (results.length != 0) {
+            output += buzzerCount.getModeResult(2, results);
+            output += buzzerCount.getModeResult(3, results);
+            output += buzzerCount.getModeResult(4, results);
+        } else {
+            output = "You haven't played Gameshow Buzzer :(";
+        }
+        return output;
+    }
+
     /* taken from Ualberta CMPUT 301, CMPUT 301 Lab Materials
-       https://github.com/joshua2ua/lonelyTwitter 2015 modified by Yunita */
+       https://github.com/joshua2ua/lonelyTwitter (C) 2015 Joshua Campbell
+       modified by Yunita */
 
     public void saveReflexTime(Context context) {
         try {
@@ -129,6 +168,32 @@ public class GameManager {
             //
         }
         return results.toArray(new String[results.size()]);
+    }
+
+    public void clearSavedData(Context context) {
+        try {
+            FileOutputStream fos1 = context.openFileOutput(FILENAME1, 0);
+            FileOutputStream fos2 = context.openFileOutput(FILENAME2, 0);
+            fos1.close();
+            fos2.close();
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /* taken from Mkyong.com
+       www.mkyong.com/android/how-to-send-email-in-android/
+       (C) 2015 mkyong modified by Yunita */
+
+    public void handleEmail(Context context, String subject, String message){
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, "");
+        email.putExtra(Intent.EXTRA_SUBJECT, subject);
+        email.putExtra(Intent.EXTRA_TEXT, message);
+        email.setType("text/plain");
+        context.startActivity(Intent.createChooser(email, "Choose an email client: "));
     }
 
 }

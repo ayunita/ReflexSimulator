@@ -28,57 +28,8 @@ import java.io.IOException;
 
 public class Statistic {
 
-    private Utilities util = new Utilities();
-    private GameManager gameManager = new GameManager();
-
     public Statistic() {
 
-    }
-
-    public String getReactionTimerResult(Context context) {
-        String results[] = gameManager.loadFromFile(context, "file1.sav");
-        String output = "";
-        if (results.length != 0) {
-            double lastTen[] = util.getRangedSortedArray(10, util.convertToDoubleArray(results));
-            double lastHundred[] = util.getRangedSortedArray(100, util.convertToDoubleArray(results));
-            output += "MAX last 10: " + String.format("%.2f", max(lastTen)) + " ms\n";
-            output += "MAX last 100: " + String.format("%.2f", max(lastHundred)) + " ms\n";
-            output += "MIN last 10: " + String.format("%.2f", min(lastTen)) + " ms \n";
-            output += "MIN last 100: " + String.format("%.2f", min(lastHundred)) + " ms \n";
-            output += "MED last 10: " + String.format("%.2f", median(lastTen)) + " ms \n";
-            output += "MED last 100: " + String.format("%.2f", median(lastHundred)) + " ms \n";
-            output += "AVE last 10: " + String.format("%.2f", average(lastTen)) + " ms \n";
-            output += "AVE last 100: " + String.format("%.2f", average(lastHundred)) + " ms \n";
-        } else {
-            output = "You haven't played Reaction Timer :(";
-        }
-        return output;
-    }
-
-    public String getGameshowResult(Context context) {
-        String results[] = gameManager.loadFromFile(context, "file2.sav");
-        String output = "";
-        if (results.length != 0) {
-            output += gameManager.getBuzzerCount().getModeResult(2, results);
-            output += gameManager.getBuzzerCount().getModeResult(3, results);
-            output += gameManager.getBuzzerCount().getModeResult(4, results);
-        } else {
-            output = "You haven't played Gameshow Buzzer :(";
-        }
-        return output;
-    }
-
-    public void clearStatistic(Context context) {
-        try {
-            FileOutputStream fos1 = context.openFileOutput("file1.sav", 0);
-            FileOutputStream fos2 = context.openFileOutput("file2.sav", 0);
-            fos1.close();
-            fos2.close();
-        } catch (FileNotFoundException e) {
-
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public double max(double rangedSortedArray[]) {
