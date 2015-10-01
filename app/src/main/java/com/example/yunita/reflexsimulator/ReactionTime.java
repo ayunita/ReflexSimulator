@@ -74,17 +74,12 @@ public class ReactionTime {
         this.isTick = isTick;
     }
 
-    public String printOutResult() {
+    public String getReactionTimerResult() {
+        setEnd();
+        setReflex();
         String result = "Waiting time: " + wait + " ms\n";
         result += "Reflex time: " + reflex + " ms\n";
         return result;
     }
-
-    public String getReactionTimerResult() {
-        setEnd();
-        setReflex();
-        return printOutResult();
-    }
-
 
 }

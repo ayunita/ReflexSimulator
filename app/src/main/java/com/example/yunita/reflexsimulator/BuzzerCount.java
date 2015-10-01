@@ -34,10 +34,6 @@ public class BuzzerCount {
         return counters;
     }
 
-    public void setCounters(int[] counters) {
-        this.counters = counters;
-    }
-
     public int getMode() {
         return mode;
     }

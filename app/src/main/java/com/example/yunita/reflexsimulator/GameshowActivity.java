@@ -140,7 +140,7 @@ public class GameshowActivity extends Activity {
     }
 
     public void showResult() {
-        gameManager.getCurrentBuzzerCount(this);
+        gameManager.loadCurrentBuzzerCount(this);
         gameManager.getBuzzerCount().updateCounter();
         gameManager.saveNewBuzzerCount(this);
     }

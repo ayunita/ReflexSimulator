@@ -35,7 +35,7 @@ public class Utilities {
         return newArray;
     }
 
-    public double[] getRangedSortedArray(int last, double savedData[]) {
+    public double[] getSortedSubarray(int last, double savedData[]) {
         if (savedData.length >= last) {
             int end = savedData.length; //exclusive
             int start = savedData.length - last;

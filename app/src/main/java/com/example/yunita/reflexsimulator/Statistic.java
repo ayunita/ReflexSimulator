@@ -1,6 +1,6 @@
 /*
 Statistic performs calculation to measure the maximum, minimum, mean, and
-median user's reflex and shows the result of gameshow buzzer.
+median user's reflex.
 
 Copyright (C) 2015  Andriani Yunita
 
@@ -19,12 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package com.example.yunita.reflexsimulator;
-
-import android.content.Context;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class Statistic {
 
@@ -61,4 +55,5 @@ public class Statistic {
         }
         return (mean / rangedSortedArray.length);
     }
+
 }

@@ -65,4 +65,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StatisticActivity.class);
         startActivity(intent);
     }
+
 }

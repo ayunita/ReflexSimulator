@@ -53,24 +53,16 @@ public class GameManager {
         return reactionTime;
     }
 
-    public void setReactionTime(ReactionTime reactionTime) {
-        this.reactionTime = reactionTime;
-    }
-
     public BuzzerCount getBuzzerCount() {
         return buzzerCount;
-    }
-
-    public void setBuzzerCount(BuzzerCount buzzerCount) {
-        this.buzzerCount = buzzerCount;
     }
 
     public String printOutReactionTimerResult(Context context) {
         String results[] = loadFromFile(context, FILENAME1);
         String output = "";
         if (results.length != 0) {
-            double lastTen[] = util.getRangedSortedArray(10, util.convertToDoubleArray(results));
-            double lastHundred[] = util.getRangedSortedArray(100, util.convertToDoubleArray(results));
+            double lastTen[] = util.getSortedSubarray(10, util.convertToDoubleArray(results));
+            double lastHundred[] = util.getSortedSubarray(100, util.convertToDoubleArray(results));
             output += "MAX last 10: " + String.format("%.2f", statistic.max(lastTen)) + " ms\n";
             output += "MAX last 100: " + String.format("%.2f", statistic.max(lastHundred)) + " ms\n";
             output += "MIN last 10: " + String.format("%.2f", statistic.min(lastTen)) + " ms \n";
@@ -114,7 +106,7 @@ public class GameManager {
         }
     }
 
-    public void getCurrentBuzzerCount(Context context) {
+    public void loadCurrentBuzzerCount(Context context) {
         try {
             int i = 0;
             int counters[] = buzzerCount.getCounters();
