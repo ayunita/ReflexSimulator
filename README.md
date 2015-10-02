@@ -1,4 +1,6 @@
-# ReflexSimulator
+# ReflexSimulator ![alt tag](https://github.com/ayunita/ReflexSimulator/blob/master/app/src/main/res/mipmap-mdpi/ic_launcher.png)
+ReflexSimulator is a simple application to measure user's reaction times
+and play multiplayer gameshow buzzer.
 
 # Demo
 
