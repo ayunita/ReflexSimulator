@@ -5,7 +5,7 @@ and play multiplayer gameshow buzzer.
 # Demo
 
 # Download
-https://github.com/ayunita/ReflexSimulator/tree/master/bin
+https://webdocs.cs.ualberta.ca/~yunita/yunita_ReflexSimulator.apk
 
 # Documentation
 https://github.com/ayunita/ReflexSimulator/tree/master/doc
