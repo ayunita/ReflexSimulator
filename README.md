@@ -1,10 +1,14 @@
-# ReflexSimulator ![alt tag](https://github.com/ayunita/ReflexSimulator/blob/master/app/src/main/res/mipmap-mdpi/ic_launcher.png)
+# ![alt tag](https://github.com/ayunita/ReflexSimulator/blob/master/app/src/main/res/mipmap-mdpi/ic_launcher.png) ReflexSimulator
 ReflexSimulator is a simple application to measure user's reaction times
 and play multiplayer gameshow buzzer.
 
 # Demo
 
 # Download
+https://github.com/ayunita/ReflexSimulator/tree/master/bin
+
+# Documentation
+https://github.com/ayunita/ReflexSimulator/tree/master/doc
 
 # Contributions
 - Android Developers, http://developer.android.com
