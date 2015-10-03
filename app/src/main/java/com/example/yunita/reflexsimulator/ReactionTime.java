@@ -27,10 +27,10 @@ public class ReactionTime {
     private int start;
     private int reflex;
     private int wait;
-    private boolean isTick;
+    private boolean isStarted;
 
     public ReactionTime() {
-        this.isTick = false;
+        this.isStarted = false;
     }
 
     public int getEnd() {
@@ -66,12 +66,12 @@ public class ReactionTime {
         this.wait = random.nextInt(1991) + 10; // random waiting time in range 10-2000ms
     }
 
-    public boolean isTick() {
-        return isTick;
+    public boolean isStarted() {
+        return isStarted;
     }
 
-    public void setIsTick(boolean isTick) {
-        this.isTick = isTick;
+    public void setIsStarted(boolean isStarted) {
+        this.isStarted = isStarted;
     }
 
     public String getReactionTimerResult() {

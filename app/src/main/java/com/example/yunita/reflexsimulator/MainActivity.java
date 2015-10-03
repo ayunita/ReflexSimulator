@@ -23,6 +23,8 @@ package com.example.yunita.reflexsimulator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -37,18 +39,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up custom_reflex_button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        finish();
     }
 
     public void gotoSingleMode(View view) {
@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
     public void gotoStatistic(View view) {
         Intent intent = new Intent(this, StatisticActivity.class);
         startActivity(intent);
+    }
+
+    public void exit(MenuItem item){
+        /* taken from Edumobile Academy
+            http://www.edumobile.org/android/difference-between-kill-activity-and-finish-activity/
+            (C) 2015 Chetana modified by Yunita.
+         */
+        finish();
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
 }

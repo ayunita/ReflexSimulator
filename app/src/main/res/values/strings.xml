@@ -11,7 +11,7 @@
     <string name="my_copyright">https://github.com/ayunita ©2015</string>
 
     <string name="instruction">Once you see the START! signal, click the red button as quick as possible.</string>
-    <string name="start_instruction">START!</string>
+    <string name="start_instruction"><b>START!</b></string>
     <string name="title_activity_instruction">Instruction</string>
     <string name="title_activity_list_player_dialog">ListPlayerDialog</string>
 
@@ -22,5 +22,6 @@
 
     <string name="action_clear">clear</string>
     <string name="action_email">email</string>
+    <string name="action_exit">exit</string>
 
 </resources>

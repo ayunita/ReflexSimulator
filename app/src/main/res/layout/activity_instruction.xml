@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -12,34 +11,34 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
             android:layout_margin="8dp"
-            android:text="Instruction"
             android:gravity="center"
-            android:textColor="@color/header_title_color"/>
+            android:text="Instruction"
+            android:textColor="@color/header_title_color"
+            android:textSize="22dp" />
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/instruction_gif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/instruction_gif"
         android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/header_title_color"
         android:layout_margin="@dimen/icon_margin"
-        android:text="@string/instruction"/>
+        android:text="@string/instruction"
+        android:textColor="@color/header_title_color" />
 
     <Button
+        android:id="@+id/dismiss_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dismiss"
         android:layout_gravity="center"
-        android:id="@+id/dismiss_button"
-        android:onClick="dismissInstruction" />
+        android:onClick="dismissInstruction"
+        android:text="Dismiss" />
 
 
 </LinearLayout>

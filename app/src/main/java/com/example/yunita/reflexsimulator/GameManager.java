@@ -66,7 +66,7 @@ public class GameManager {
         CountDownTimer timer = new CountDownTimer(reactionTime.getWait(), 1) {
             @Override
             public void onTick(long l) {
-                reactionTime.setIsTick(true);
+                reactionTime.setIsStarted(false);
                 if (button.isPressed()) {
                     tv.setText("Too fast!");
                     start();
@@ -75,7 +75,7 @@ public class GameManager {
 
             @Override
             public void onFinish() {
-                reactionTime.setIsTick(false);
+                reactionTime.setIsStarted(true);
                 tv.setText("START!");
                 reactionTime.setStart();
             }

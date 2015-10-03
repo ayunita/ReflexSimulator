@@ -23,7 +23,6 @@ package com.example.yunita.reflexsimulator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -68,21 +67,6 @@ public class ReactionTimerActivity extends Activity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up custom_reflex_button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (isInstructionDismiss) {
@@ -101,6 +85,7 @@ public class ReactionTimerActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+        finish();
     }
 
     private void setToDefaultState() {
@@ -117,7 +102,7 @@ public class ReactionTimerActivity extends Activity {
     }
 
     public void showResult() {
-        if (!gameManager.getReactionTime().isTick()) {
+        if (gameManager.getReactionTime().isStarted()) {
             reflex_button.setEnabled(false);
             start_signal.setText("Good job!");
             reflex_button.setSelected(true);

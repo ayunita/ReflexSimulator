@@ -1,100 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:background="@color/first_color"
-        android:padding="@dimen/activity_vertical_margin"
+        android:onClick="gotoSingleMode"
         android:orientation="horizontal"
-        android:layout_weight="1"
-        android:onClick="gotoSingleMode">
+        android:padding="@dimen/activity_vertical_margin">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/button_icon"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/button_icon" />
 
         <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="32dp"
+            android:gravity="center_vertical"
             android:text="@string/reaction_timer_menu"
-            android:layout_marginLeft="32dp"
-            android:textColor="@color/header_title_color"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/header_title_color" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:background="@color/second_color"
-        android:padding="@dimen/activity_vertical_margin"
+        android:onClick="gotoPartyMode"
         android:orientation="horizontal"
-        android:layout_weight="1"
-        android:onClick="gotoPartyMode">
+        android:padding="@dimen/activity_vertical_margin">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/gameshow_icon"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/gameshow_icon" />
 
         <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
-            android:text="@string/gameshow_menu"
-            android:layout_marginLeft="32dp"
-            android:textColor="@color/header_title_color"
             android:layout_gravity="center_vertical"
-            android:gravity="center_vertical" />
+            android:layout_marginLeft="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/gameshow_menu"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/header_title_color" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/third_color"
-        android:padding="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
         android:layout_weight="1"
-        android:onClick="gotoStatistic">
+        android:background="@color/third_color"
+        android:onClick="gotoStatistic"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_vertical_margin">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/statistic_icon"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/statistic_icon" />
 
         <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
-            android:text="@string/statistic_menu"
-            android:layout_marginLeft="32dp"
-            android:textColor="@color/header_title_color"
             android:layout_gravity="center_vertical"
-            android:gravity="center_vertical" />
+            android:layout_marginLeft="32dp"
+            android:gravity="center_vertical"
+            android:text="@string/statistic_menu"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/header_title_color" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/forth_color"
-        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:paddingLeft="@dimen/activity_vertical_margin">
 
         <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/my_copyright"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/header_title_color" />
     </LinearLayout>
 

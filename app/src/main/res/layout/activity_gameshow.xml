@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_color">
+    android:background="@color/primary_color"
+    android:orientation="vertical">
 
     <Button
+        android:id="@+id/player1_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="1"
-        android:id="@+id/player1_button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@color/first_color"
+        android:text="1"
         android:textColor="@color/header_title_color"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <Button
+        android:id="@+id/player2_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="2"
-        android:id="@+id/player2_button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@color/second_color"
+        android:text="2"
         android:textColor="@color/header_title_color"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <Button
+        android:id="@+id/player3_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="3"
-        android:id="@+id/player3_button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@color/third_color"
+        android:text="3"
         android:textColor="@color/header_title_color"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <Button
+        android:id="@+id/player4_button"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="4"
-        android:id="@+id/player4_button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:background="@color/forth_color"
+        android:text="4"
         android:textColor="@color/header_title_color"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </LinearLayout>

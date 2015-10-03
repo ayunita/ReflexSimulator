@@ -1,76 +1,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/primary_color">
+    android:background="@color/primary_color"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/second_color"
-        android:orientation="vertical">
+        android:padding="@dimen/header_margin"
+        android:text="@string/title_activity_single_player"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/header_title_color" />
 
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_single_player"
-            android:textColor="@color/header_title_color"
-            android:layout_margin="@dimen/header_margin" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/stats_result1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:background="@color/first_color"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:lineSpacingExtra="1sp"
+        android:padding="@dimen/header_margin"
+        android:text=""
+        android:textColor="@color/header_title_color" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/header_title_color"
-            android:id="@+id/stats_result1"
-            android:lineSpacingExtra="1sp"
-            android:layout_margin="@dimen/header_margin" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/third_color"
-        android:orientation="vertical">
+        android:padding="@dimen/header_margin"
+        android:text="@string/title_activity_gameshow"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/header_title_color" />
 
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_gameshow"
-            android:textColor="@color/header_title_color"
-            android:layout_margin="@dimen/header_margin" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/stats_result2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
         android:background="@color/forth_color"
-        android:orientation="vertical"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/header_title_color"
-            android:id="@+id/stats_result2"
-            android:lineSpacingExtra="1sp"
-            android:layout_margin="@dimen/header_margin" />
-
-    </LinearLayout>
+        android:lineSpacingExtra="1sp"
+        android:padding="@dimen/header_margin"
+        android:text=""
+        android:textColor="@color/header_title_color" />
 
 </LinearLayout>
