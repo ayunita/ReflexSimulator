@@ -1,7 +1,8 @@
 /*
-GameManager holds the reaction time and buzzer count data,
+GameManager served as a controller of the application.
+It holds the reaction time and buzzer count data,
 and stores them into files. It is also capable to load those
-data from files, and print out and send the result.
+data from files, and print out and send the result via email.
 
 Copyright (C) 2015  Andriani Yunita
 
@@ -23,6 +24,9 @@ package com.example.yunita.reflexsimulator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -55,6 +59,27 @@ public class GameManager {
 
     public BuzzerCount getBuzzerCount() {
         return buzzerCount;
+    }
+
+    public void setCountDownTimer(final ImageButton button, final TextView tv){
+        reactionTime.setWait();
+        CountDownTimer timer = new CountDownTimer(reactionTime.getWait(), 1) {
+            @Override
+            public void onTick(long l) {
+                reactionTime.setIsTick(true);
+                if (button.isPressed()) {
+                    tv.setText("Too fast!");
+                    start();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                reactionTime.setIsTick(false);
+                tv.setText("START!");
+                reactionTime.setStart();
+            }
+        }.start();
     }
 
     public String printOutReactionTimerResult(Context context) {

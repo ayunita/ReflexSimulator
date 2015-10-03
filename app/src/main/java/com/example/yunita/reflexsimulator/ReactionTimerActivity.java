@@ -113,29 +113,7 @@ public class ReactionTimerActivity extends Activity {
     public void start() {
         restart_button.setVisibility(View.INVISIBLE);
         reflex_button.setEnabled(true);
-
-        /* taken from Android Developers
-            http://developer.android.com/reference/android/os/CountDownTimer.html
-            (C) 2015 Android Developers modified by Yunita. */
-
-        gameManager.getReactionTime().setWait();
-        CountDownTimer timer = new CountDownTimer(gameManager.getReactionTime().getWait(), 1) {
-            @Override
-            public void onTick(long l) {
-                gameManager.getReactionTime().setIsTick(true);
-                if (reflex_button.isPressed()) {
-                    start_signal.setText("Too fast!");
-                    start();
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                gameManager.getReactionTime().setIsTick(false);
-                start_signal.setText("START!");
-                gameManager.getReactionTime().setStart();
-            }
-        }.start();
+        gameManager.setCountDownTimer(reflex_button, start_signal);
     }
 
     public void showResult() {
