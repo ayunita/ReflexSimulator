@@ -27,14 +27,17 @@ public class Statistic {
     }
 
     public double max(double rangedSortedArray[]) {
+        // max = last index of sorted array
         return rangedSortedArray[rangedSortedArray.length - 1];
     }
 
     public double min(double rangedSortedArray[]) {
+        // min = first index of sorted array
         return rangedSortedArray[0];
     }
 
     public double median(double rangedSortedArray[]) {
+        // median = middle index of sorted array
         double median = 0;
         int size = rangedSortedArray.length;
         int mid = size / 2;

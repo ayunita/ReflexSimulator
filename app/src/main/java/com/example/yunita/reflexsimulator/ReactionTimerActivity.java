@@ -106,8 +106,14 @@ public class ReactionTimerActivity extends Activity {
             reflex_button.setEnabled(false);
             start_signal.setText("Good job!");
             reflex_button.setSelected(true);
+
+            // announce result
             reflex_result.setText(gameManager.getReactionTime().getReactionTimerResult());
+
+            // add new reflex time to file
             gameManager.saveReflexTime(this);
+
+            // restart game
             restart_button.setVisibility(View.VISIBLE);
             restartGame();
         }

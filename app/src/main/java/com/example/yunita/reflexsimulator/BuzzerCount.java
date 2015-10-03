@@ -22,7 +22,7 @@ package com.example.yunita.reflexsimulator;
 
 public class BuzzerCount {
 
-    private int counters[] = new int[9];
+    private int counters[] = new int[9]; // stores counters for mode 2, 3, and 4
     private int mode;
     private int player;
 
@@ -54,13 +54,13 @@ public class BuzzerCount {
         int startIndex = 0;
         switch (mode) {
             case 2:
-                startIndex = 0;
+                startIndex = 0; // mode 2p starts from [0]
                 break;
             case 3:
-                startIndex = 2;
+                startIndex = 2; // mode 3p starts from [2]
                 break;
             case 4:
-                startIndex = 5;
+                startIndex = 5; // mode 4p starts from [5]
                 break;
         }
         return startIndex;

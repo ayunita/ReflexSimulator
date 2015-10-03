@@ -77,7 +77,7 @@ public class GameManager {
             public void onFinish() {
                 reactionTime.setIsStarted(true);
                 tv.setText("START!");
-                reactionTime.setStart();
+                reactionTime.setStart(); // set start time
             }
         }.start();
     }
@@ -125,9 +125,9 @@ public class GameManager {
             fos.write(new String(Integer.toString(reactionTime.getReflex()) + "\n").getBytes());
             fos.close();
         } catch (FileNotFoundException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            e.printStackTrace();
         }
     }
 
@@ -138,6 +138,9 @@ public class GameManager {
             FileInputStream fis = context.openFileInput(FILENAME2);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line = in.readLine();
+
+            // Each line in file represents the player counter for particular mode.
+            // ie. mode 1, player 1 = index 0; mode 3, player 1 = index 5
             while (line != null) {
                 if (line != "") {
                     counters[i] = Integer.parseInt(line);
@@ -146,9 +149,9 @@ public class GameManager {
                 line = in.readLine();
             }
         } catch (FileNotFoundException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            e.printStackTrace();
         }
     }
 
@@ -161,9 +164,9 @@ public class GameManager {
             }
             fos.close();
         } catch (FileNotFoundException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            e.printStackTrace();
         }
     }
 
@@ -180,23 +183,24 @@ public class GameManager {
                 line = in.readLine();
             }
         } catch (FileNotFoundException e) {
-            //
+            e.printStackTrace();
         } catch (IOException e) {
-            //
+            e.printStackTrace();
         }
         return results.toArray(new String[results.size()]);
     }
 
     public void clearSavedData(Context context) {
         try {
+            // overwrite files
             FileOutputStream fos1 = context.openFileOutput(FILENAME1, 0);
             FileOutputStream fos2 = context.openFileOutput(FILENAME2, 0);
             fos1.close();
             fos2.close();
         } catch (FileNotFoundException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            e.printStackTrace();
         }
     }
 
