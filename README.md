@@ -3,10 +3,10 @@ ReflexSimulator is a simple android application to measure user's reaction times
 and play multiplayer gameshow buzzer.
 
 # Specifications
--Min Sdk Version: 18
--Target Sdk Version: 21
--Compile Sdk Version: 21
--Build Tools Version: 22.0.1
+- Min Sdk Version: 18
+- Target Sdk Version: 21
+- Compile Sdk Version: 21
+- Build Tools Version: 22.0.1
 
 # Demo
 https://github.com/ayunita/ReflexSimulator/tree/master/doc/[demo]yunita_ReflexSimulator.mp4
